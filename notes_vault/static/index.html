@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offline Notes Vault</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<header class="topbar">
+  <h1>Offline Notes Vault</h1>
+  <div class="search-box">
+    <label for="search">Search notes</label>
+    <input type="search" id="search" autocomplete="off" spellcheck="false" maxlength="200">
+  </div>
+</header>
+<main class="layout">
+  <section class="pane pane-list" aria-labelledby="list-heading">
+    <div class="pane-head">
+      <h2 id="list-heading">Notes</h2>
+      <button type="button" id="new-note" class="btn">New note</button>
+    </div>
+    <nav aria-label="Notes" class="list-scroll">
+      <ul id="note-list" class="note-list"></ul>
+      <p id="list-state" class="list-state" hidden></p>
+    </nav>
+    <div class="list-foot">
+      <button type="button" id="load-sample" class="btn btn-secondary">Load sample note</button>
+    </div>
+  </section>
+
+  <section class="pane pane-editor" aria-labelledby="editor-heading">
+    <h2 id="editor-heading">Editor</h2>
+
+    <div id="conflict" class="conflict" role="alert" hidden>
+      <p id="conflict-message"></p>
+      <div id="conflict-actions" class="row">
+        <button type="button" id="conflict-reload" class="btn">Load latest into editor</button>
+        <button type="button" id="conflict-overwrite" class="btn btn-secondary">Save mine as a new revision</button>
+      </div>
+      <div id="conflict-mine-wrap" hidden>
+        <p class="hint">Your unsaved text (read-only copy):</p>
+        <textarea id="conflict-mine" aria-label="Your unsaved text" readonly rows="6"></textarea>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="note-title">Note title</label>
+      <input type="text" id="note-title" maxlength="200" autocomplete="off" aria-describedby="title-error">
+      <p id="title-error" class="field-error" hidden></p>
+    </div>
+
+    <div class="field">
+      <label for="note-body">Note text</label>
+      <textarea id="note-body" rows="12" aria-describedby="body-count"></textarea>
+      <p id="body-count" class="hint" aria-live="polite">0 / 100000</p>
+    </div>
+
+    <div class="row">
+      <button type="button" id="save" class="btn btn-primary">Save</button>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="preview-wrap">
+      <h2 id="preview-heading">Preview</h2>
+      <p class="hint">Plain text preview — Markdown rendering comes later.</p>
+      <pre id="preview" aria-labelledby="preview-heading"></pre>
+    </div>
+  </section>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>
