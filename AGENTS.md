@@ -18,6 +18,10 @@ python -m notes_vault --data-dir ./vault-data --port 8765
 
 The server binds `127.0.0.1` only. `--data-dir` is required. Stop it with Ctrl+C.
 
+## Ticket work
+
+To implement a GitHub issue, follow the steps in [.claude/skills/implement-ticket/SKILL.md](.claude/skills/implement-ticket/SKILL.md) and the section "Agent roles" in [CLAUDE.md](CLAUDE.md). The role files in `.claude/agents/` each start with a section "In this repository" that holds the project rules for that role. An agent that cannot delegate to those roles does the step itself and says so in the pull request; the review gate and the acceptance gate still apply to every ticket.
+
 ## Loop conventions
 
 - The loop runs at L1: report-only, started by hand. It proposes; it does not label, comment, close, edit source, push or merge.
