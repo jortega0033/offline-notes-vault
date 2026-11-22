@@ -13,7 +13,7 @@ An offline notes workbench for one person. One Python package, standard library 
 | Product scope, milestones, contracts, fixture, acceptance matrix | [docs/PRD.md](docs/PRD.md) |
 | How the code is built, the traced save workflow, the rules the code keeps, differences between the PRD and the code | [docs/architecture.md](docs/architecture.md) |
 | Launch, smoke steps, limits, baseline verification | [README.md](README.md) |
-| Backlog | Epic issue #1 and its sub-issues on GitHub. The epic lists them in dependency order with estimates. |
+| Backlog | Epic issue #1 and its eight sub-issues on GitHub: #7, #2, #4, #3, #8, #5, #6, #9, in dependency order. The epic gives the dependencies, the parallel tracks and the estimates. |
 | Loop setup and its limits | [LOOP.md](LOOP.md), [loop-constraints.md](loop-constraints.md) |
 | Project subagents and their origin | [.claude/agency-agents/README.md](.claude/agency-agents/README.md) |
 
