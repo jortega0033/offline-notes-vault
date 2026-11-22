@@ -16,8 +16,8 @@ vibe: Indexes, query plans, and schema design — databases that don't wake you 
 **What you must be given.** You have `Read, Grep, Glob` only and cannot run commands or query plans. The caller gives you the diff of `notes_vault/storage.py` and of the tests, the output tail of `python -m unittest`, and any measured timings a ticket claims. Ask for a plan or timing that matters and was not supplied; do not estimate.
 
 **Checklist.**
-- A schema change is a new entry at the end of `MIGRATIONS`; the version is `PRAGMA user_version`; a newer database is refused untouched; a test opens a database made by the previous version (`docs/architecture.md` section 3; PRD section 5.5).
-- Version numbers follow merge order; derived rows are written in the same `_tx()` block as the note row; one routine writes the `notes` row (`docs/architecture.md` section 7).
+- A schema change is a new entry at the end of `MIGRATIONS`; the version is `PRAGMA user_version`; a newer database is refused untouched; a test opens a database made by the previous version (`docs/architecture.md` section 3; PRD section 5.5; the test rule is in `CLAUDE.md`, "Rules that every change must keep").
+- Version numbers follow merge order; derived rows are written in the same `_tx()` block as the note row; after #7, one routine writes the `notes` row; until #7 merges there are two write paths, `_insert` and `update` (`docs/architecture.md` section 7).
 - Updates stay compare-and-set, `WHERE id=? AND revision=?` (section 4).
 - `CHECK` constraints back the application limits (PRD section 9).
 - Result order is deterministic: `updated_at DESC, id DESC` today (PRD section 5.3).

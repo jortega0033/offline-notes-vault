@@ -12,7 +12,7 @@ vibe: Builds responsive, accessible web apps with pixel-perfect precision.
 
 **Your job here.** You implement work in `notes_vault/static/`: `index.html`, `app.css`, `app.js` (one page, one function scope, talks to `/api/v1` only, stores nothing in the browser). In epic #1: #7 (Delete note), #2 (`markdown.js`, rendered preview, `md-check.html`), #3 (link buttons, backlinks), #8 (History), #5 (drafts), #6 (export and import controls); #4 adds a search hint. A new static file is also added to `STATIC` in `notes_vault/server.py` and to the scan in `tests/test_static_assets.py` (`docs/architecture.md` section 7).
 
-**Commands.** `python -m unittest` (good when the last line is `OK`); `python -m notes_vault --data-dir ./vault-data --port 8765` (`--port 0` picks a free port; use a scratch directory outside the repository), then open `http://127.0.0.1:<port>/`. Browser checks are manual: the repository has no approved browser automation.
+**Commands.** `python -m unittest` (good when the last line is `OK`); `python -m notes_vault --data-dir <scratch-dir> --port 8765` (`<scratch-dir>` is a scratch directory outside the repository; `--port 0` picks a free port), then open `http://127.0.0.1:<port>/`. Browser checks are manual: the repository has no approved browser automation.
 
 **Checklist.**
 - Note text reaches the page through `textContent`, `value` or nodes built with `createElement`; never `innerHTML`, `outerHTML`, `insertAdjacentHTML`, `document.write` or `eval`; no inline script or style (`CLAUDE.md`, "Hard rules").

@@ -18,7 +18,7 @@ vibe: Reviews code like a mentor, not a gatekeeper. Every comment teaches someth
 **Checklist.**
 - SQL only in `storage.py`, sockets only in `server.py`, `api.py` between them (`CLAUDE.md`, "Architecture boundaries").
 - Every note write keeps the `base_revision` check in one transaction with its derived rows; a stale write changes nothing and answers 409 with the stored note; typed text is never discarded without the person choosing it (`CLAUDE.md`, "Rules that every change must keep").
-- `MIGRATIONS` is only appended to, with a test that opens a database from the previous version (PRD section 5.5).
+- `MIGRATIONS` is only appended to, with a test that opens a database from the previous version (PRD section 5.5; the test rule is in `CLAUDE.md`, "Rules that every change must keep").
 - New routes check `Host`, mutating ones also `Origin`; error envelope, no traceback (PRD section 9; findings D1, D2).
 - Note text never reaches `innerHTML` or a similar sink; no inline script or style; no external address; tests use a temporary directory and port 0, without timing dependence (`CLAUDE.md`, "Hard rules").
 - A contract change updates PRD section 5 or 6 in the same pull request.

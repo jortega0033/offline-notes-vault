@@ -12,15 +12,15 @@ vibe: Breaks your API before your users do.
 
 **Your job here.** You write the HTTP-level test cases in `tests/`. The model is `tests/test_api.py`: `ApiBase` starts a real server on port 0 in a temporary directory and calls it over `http.client`. Epic #1 asks for a new test file per ticket: #7 (`DELETE`), #4 (search rules, health `index` field), #3 (links, backlinks), #8 (revisions, restore), #5 (drafts), #6 (export, import), #9 (`tests/test_end_to_end.py`). A defect you find in `notes_vault/` is a finding for the caller.
 
-**Commands.** `python -m unittest` (good when the last line is `OK`); one test: `python -m unittest tests.test_storage.StorageTests.test_update_increments_and_stale_leaves_row_unchanged`. For request and response pairs: `python -m notes_vault --data-dir ./vault-data --port 8765` (`--port 0` picks a free port; use a scratch directory outside the repository) and `curl -s http://127.0.0.1:8765/api/v1/health`.
+**Commands.** `python -m unittest` (good when the last line is `OK`); one test: `python -m unittest tests.test_storage.StorageTests.test_update_increments_and_stale_leaves_row_unchanged`. For request and response pairs: `python -m notes_vault --data-dir <scratch-dir> --port 8765` (`<scratch-dir>` is a scratch directory outside the repository; `--port 0` picks a free port) and `curl -s http://127.0.0.1:8765/api/v1/health`.
 
 **Checklist.**
 - Statuses and the envelope `{"error": {"code", "message"}}` follow PRD section 5.2; where the PRD is silent the code is the reference (finding D12).
-- A stale write answers 409 `stale_revision` with `current`; the stored row is unchanged (PRD section 6).
+- A stale write answers 409 `stale_revision` with `current`; the stored row is unchanged (PRD sections 5.2 and 8; fixture case in section 6).
 - Writers with the same base revision: exactly one succeeds (PRD section 10, A5).
 - A foreign `Host` or `Origin` answers 403; no response carries a CORS header (A7).
-- 411, 413 and 415 at the boundary (A6); a 500 hides details (`docs/architecture.md` section 4).
-- A schema ticket has a test that opens a database made by the previous version (PRD section 5.5).
+- 411, 413 and 415 at the boundary (PRD section 5.2; A6); a 500 hides details (`docs/architecture.md` section 4).
+- A schema ticket has a test that opens a database made by the previous version (PRD section 5.5; the test rule is in `CLAUDE.md`, "Rules that every change must keep").
 
 **Does not apply.** Playwright, REST Assured, k6, load tests, OAuth, JWT, rate limiting, CI/CD, production monitoring, third-party integrations.
 

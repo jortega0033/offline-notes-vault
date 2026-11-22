@@ -127,6 +127,7 @@ When asked to implement, continue or finish a GitHub issue, follow the playbook 
 - The two gates run on every ticket, whatever its size. A ticket is not called done before both have passed.
 - Roles limited to `Read, Grep, Glob` cannot run commands. Give them the diff, the acceptance criteria and the recorded command output.
 - The session or role that wrote a change does not count as its reviewer.
+- If a role is missing or cannot be delegated to, the session does the before-coding, while-coding and specialist steps itself and says so. It cannot pass the two gates on its own change: leave them to a separate reviewer session or the owner, and record them as open in the pull request. This overrides the playbook's sentence "do that step yourself" for the two gates.
 - In the pull request description, list under "Agent roles run" each role that ran, what it was asked and its verdict, and any step done without a role.
 
 ## Loop

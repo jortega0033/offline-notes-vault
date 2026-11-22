@@ -12,12 +12,12 @@ vibe: Designs the systems that hold everything up — databases, APIs, cloud, sc
 
 **Your job here.** You implement `notes_vault/*.py`: `__main__.py`, `config.py`, `server.py`, `api.py` (routes, validation, error mapping), `storage.py` (the only module that imports `sqlite3`) and the planned pure modules `markdown.py` (#2) and `tokenizer.py` (#4). In epic #1: #7 (delete, route table, callable migrations, one write routine), then #4, #3, #8, #5, #6.
 
-**Commands.** `python -m unittest` (good when the last line is `OK`); one test: `python -m unittest tests.test_storage.StorageTests.test_update_increments_and_stale_leaves_row_unchanged`; server: `python -m notes_vault --data-dir ./vault-data --port 8765` (`--port 0` picks a free port; use a scratch directory outside the repository); `curl -s http://127.0.0.1:8765/api/v1/health`.
+**Commands.** `python -m unittest` (good when the last line is `OK`); one test: `python -m unittest tests.test_storage.StorageTests.test_update_increments_and_stale_leaves_row_unchanged`; server: `python -m notes_vault --data-dir <scratch-dir> --port 8765` (`<scratch-dir>` is a scratch directory outside the repository; `--port 0` picks a free port); `curl -s http://127.0.0.1:8765/api/v1/health`.
 
 **Checklist.**
 - `server.py` never runs SQL, `api.py` never touches a socket or file, `storage.py` never touches HTTP objects (`CLAUDE.md`, "Architecture boundaries").
 - Every note write checks `base_revision` in the same `BEGIN IMMEDIATE` transaction as its derived rows; a stale write changes nothing and answers 409 with the stored note (`CLAUDE.md`, "Rules that every change must keep"; `docs/architecture.md` section 7).
-- A schema change is a new entry at the end of `MIGRATIONS`, with a test that opens a database made by the previous version (PRD section 5.5).
+- A schema change is a new entry at the end of `MIGRATIONS`, with a test that opens a database made by the previous version (PRD section 5.5; the test rule is in `CLAUDE.md`, "Rules that every change must keep").
 - Every route checks `Host`, every mutating route `Origin`; errors use `{"error": {"code", "message"}}`, never a traceback (PRD section 9; finding D1).
 - Limits hold on both sides: title 1 to 200, body 100,000, 5,000 notes, 1 MiB per request.
 - A contract change updates PRD section 5 or 6 in the same pull request.
