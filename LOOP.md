@@ -76,7 +76,7 @@ Run on 2026-11-22 (Windows 11, Node v22.23.4) after the scaffold was adapted:
 
 ## Doctor suggestions that were not adopted
 
-`loop doctor` also suggests a `docs/safety.md`, issue and pull request templates, workflows, and worktree isolation notes. They were left out on purpose: the denylists and merge policy are in `loop-constraints.md`, a workflow would be the scheduler that L1 excludes, and an L1 run edits two report files only, so it needs no worktree of its own.
+`loop doctor` also suggests a `docs/safety.md`, issue and pull request templates, workflows, and worktree isolation notes. They were left out on purpose: the denylists and merge policy are in `loop-constraints.md`, a scheduled workflow would be the scheduler that L1 excludes, and an L1 run edits two report files only, so it needs no worktree of its own.
 
 ## Links
 

@@ -13,7 +13,7 @@ The owner started this run. That is the go signal for exactly one ticket, and it
 
 ## Steps
 
-1. **Refresh the queue.** Read epic #1 with `gh issue view 1` and each open child with `gh issue view <n>`. The epic's table "Tickets in dependency order" gives the order: #7, #2, #4, #3, #8, #5, #6, #9. A ticket labelled `status:blocked` whose blockers are all closed is relabelled `status:ready` (`gh issue edit <n> --add-label status:ready --remove-label status:blocked`).
+1. **Refresh the queue.** Read epic #1 with `gh issue view 1` and each open child with `gh issue view <n>`. The epic's table "Tickets in dependency order" gives the order and is authoritative; at the time of writing it reads #7, #2, #4, #3, #8, #5, #6, #9, and tickets added to the epic later belong in it too. A ticket labelled `status:blocked` whose blockers are all closed is relabelled `status:ready` (`gh issue edit <n> --add-label status:ready --remove-label status:blocked`).
 2. **Pick one ticket.** With an issue number argument, take that issue, but only if it is open and passes the checks below. Without one, take the first `status:ready` ticket in the epic's order that is not `status:in-progress` and has no `needs-decision` label. If a ticket needs an owner decision that has no stated default, stop and say so. If nothing qualifies, report why and stop.
 3. **Claim it.** `gh issue edit <n> --add-label status:in-progress`.
 4. **Branch in a fresh worktree** named as `CLAUDE.md`, "Git workflow", says (`<issue-number>-<short-slug>`), cut from an up to date `origin/main`: `git fetch origin`, then `git worktree add ../offline-notes-vault-worktrees/<n>-<slug> -b <n>-<slug> origin/main`. Work only in that worktree. Never work on `main`.

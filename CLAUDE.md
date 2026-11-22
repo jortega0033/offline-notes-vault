@@ -13,7 +13,7 @@ An offline notes workbench for one person. One Python package, standard library 
 | Product scope, milestones, contracts, fixture, acceptance matrix | [docs/PRD.md](docs/PRD.md) |
 | How the code is built, the traced save workflow, the rules the code keeps, differences between the PRD and the code | [docs/architecture.md](docs/architecture.md) |
 | Launch, smoke steps, limits, baseline verification | [README.md](README.md) |
-| Backlog | Epic issue #1 and its eight sub-issues on GitHub: #7, #2, #4, #3, #8, #5, #6, #9, in dependency order. The epic gives the dependencies, the parallel tracks and the estimates. |
+| Backlog | Epic issue #1 and its sub-issues on GitHub (eight at the time of writing: #7, #2, #4, #3, #8, #5, #6, #9, in dependency order). The epic's table is authoritative; new tickets are added there. The epic gives the dependencies, the parallel tracks and the estimates. |
 | Loop setup and its limits | [LOOP.md](LOOP.md), [loop-constraints.md](loop-constraints.md) |
 | Project subagents, their origin and local changes | [.claude/agency-agents/README.md](.claude/agency-agents/README.md) |
 | Ticket workflow and the step at which each agent role runs | [.claude/skills/implement-ticket/SKILL.md](.claude/skills/implement-ticket/SKILL.md), section "Agent roles" below |
@@ -131,7 +131,7 @@ When asked to implement, continue or finish a GitHub issue, follow the playbook 
 - The two gates run on every ticket, whatever its size. A ticket is not called done before both have passed.
 - Roles limited to `Read, Grep, Glob` cannot run commands. Give them the diff, the acceptance criteria and the recorded command output.
 - The session or role that wrote a change does not count as its reviewer.
-- If a role is missing or cannot be delegated to, the session does the before-coding, while-coding and specialist steps itself and says so. It cannot pass the two gates on its own change: leave them to a separate reviewer session or the owner, and record them as open in the pull request. This overrides the playbook's sentence "do that step yourself" for the two gates.
+- If a role is missing or cannot be delegated to, the session does the before-coding, while-coding and specialist steps itself and says so. It cannot pass the two gates on its own change: do not push or open the pull request. Stop, report in the issue comment (or the session output) that the gates could not run, and leave the run for the owner. A pull request is opened or marked ready only after both gates passed on the current diff. This overrides the playbook's sentence "do that step yourself" for the two gates.
 - In the pull request description, list under "Agent roles run" each role that ran, what it was asked and its verdict, and any step done without a role.
 
 ## Delivery workflow

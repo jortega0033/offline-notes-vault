@@ -8,6 +8,6 @@ All notable changes to this project are recorded here. The format follows [Keep 
 
 - Delivery workflow: review gate hook, CI on Linux and Windows, pull request template, UI quality rules and the `next-ticket` driver.
 
-## [0.1.0] - baseline, not tagged
+## [0.1.0] - 2026-11-22 - baseline, not tagged
 
 - M1: write, save, reopen, substring search, stale-revision handling and plain-text preview.

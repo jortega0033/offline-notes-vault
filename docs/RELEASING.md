@@ -1,6 +1,6 @@
 # Releasing
 
-Only the owner releases. An agent never tags, publishes or creates a GitHub release; the deny rules in `.claude/settings.json` and the review gate keep it that way.
+Only the owner releases. An agent never tags, publishes or creates a GitHub release; the deny rules in `.claude/settings.json` block `gh release create` and `gh pr merge`, and a bare `git push` of a tag is not on the allow list, so it prompts the owner. The review gate only covers `gh pr create` and `gh pr ready`.
 
 ## What a release is here
 

@@ -19,4 +19,4 @@ Binding for every change to the page (`notes_vault/static/`) and to user-facing 
 - A UI ticket ends with a check of every changed screen against the ten rules. The result goes into the pull request under Evidence.
 - User-facing copy, documentation and pull request text go through the `unslop` skill (`.claude/skills/unslop/`) before the pull request is opened.
 - Frontend Developer, Accessibility Auditor and Code Reviewer carry this file in their checklists. Enforcement is by the review gate (Code Reviewer on every ticket), not by a script. Rule 1 can be linted with `grep -nE "border-(left|right|top|bottom)" notes_vault/static/app.css`; rule 2 cannot be detected reliably from CSS.
-- Breaches that already exist are collected in one ticket, "Bring the existing screens in line with docs/ui-quality.md". New work does not add to them.
+- Breaches that already exist are to be collected in one ticket, "Bring the existing screens in line with docs/ui-quality.md" (proposed; the owner creates it and adds it to epic #1). New work does not add to them.
