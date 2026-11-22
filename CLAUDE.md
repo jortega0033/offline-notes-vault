@@ -13,7 +13,7 @@ An offline notes workbench for one person. One Python package, standard library 
 | Product scope, milestones, contracts, fixture, acceptance matrix | [docs/PRD.md](docs/PRD.md) |
 | How the code is built, the traced save workflow, the rules the code keeps, differences between the PRD and the code | [docs/architecture.md](docs/architecture.md) |
 | Launch, smoke steps, limits, baseline verification | [README.md](README.md) |
-| Backlog | Epic issue #1 and its sub-issues on GitHub (eight at the time of writing: #7, #2, #4, #3, #8, #5, #6, #9, in dependency order). The epic's table is authoritative; new tickets are added there. The epic gives the dependencies, the parallel tracks and the estimates. |
+| Backlog | Epic issue #1 and its sub-issues on GitHub (listed in dependency order in the epic's table, which is authoritative; new tickets are added there). A big ticket is split into sub-issues of 1 to 4 hours, one pull request each; a ticket labelled `tracking` or with open sub-issues is a container and is never worked on itself. The epic gives the dependencies, the parallel tracks and the estimates. |
 | Loop setup and its limits | [LOOP.md](LOOP.md), [loop-constraints.md](loop-constraints.md) |
 | Project subagents, their origin and local changes | [.claude/agency-agents/README.md](.claude/agency-agents/README.md) |
 | Ticket workflow and the step at which each agent role runs | [.claude/skills/implement-ticket/SKILL.md](.claude/skills/implement-ticket/SKILL.md), section "Agent roles" below |
@@ -94,10 +94,10 @@ Rules that every change must keep:
 ## Git workflow
 
 - `main` is the default branch. A pull request is required and the CI checks must be green (branch protection is the owner's setting on GitHub). Checks are also run locally and reported with their output.
-- One branch per issue. The repository has no naming rule yet; `<issue-number>-<short-slug>` is the suggested form. Small commits with imperative subjects and a type prefix, as in the existing history (`feat:`, and by extension `fix:`, `docs:`, `test:`, `chore:`).
-- Order for every ticket: local checks, Code Reviewer, Reality Checker, then a draft pull request that names the issue (`Part of #1`, `Closes #n`), then CI on that draft, then `gh pr ready` only when CI is green. Do not push or open a pull request unless the owner asked in the current session; a `/next-ticket` run counts as that request. Do not merge your own pull request and do not push to `main`.
+- One branch per issue. Branches are named `<issue-number>-<short-slug>`. Small commits with imperative subjects and a type prefix, as in the existing history (`feat:`, and by extension `fix:`, `docs:`, `test:`, `chore:`).
+- Order for every ticket: local checks, Code Reviewer, Reality Checker, then a draft pull request that names the issue (`Part of #1`, `Closes #n`), then CI on that draft, then `gh pr ready` only when CI is green. Code Reviewer and Reality Checker have no shell, so the diff and the local evidence are written to `.claude/state/review/` in the ticket worktree before they are called. The last open sub-issue of a parent also says `Closes #<parent>`. Acceptance steps that need a person are done as far as an agent can and the rest is listed under "Owner checks" in the pull request. Do not push or open a pull request unless the owner asked in the current session; a `/next-ticket` run counts as that request. Do not merge your own pull request and do not push to `main`.
 - Never commit a data directory, a SQLite file, `.env*`, or `.prep/`.
-- Do not change `.claude/agents/`, `LOOP.md`, `loop-constraints.md` or `loop-budget.md` as part of a feature ticket.
+- Do not change `.claude/agents/`, `.claude/skills/`, `.claude/hooks/`, `.claude/settings.json`, `LOOP.md`, `loop-constraints.md` or `loop-budget.md` as part of a feature ticket.
 
 ## Evidence before a ticket is called done
 
@@ -138,9 +138,9 @@ When asked to implement, continue or finish a GitHub issue, follow the playbook 
 
 How a ticket gets from the backlog to a ready pull request. Each piece is described in its own file; this section only links them.
 
-- **Start and playbook.** The owner starts one ticket with `/next-ticket` ([.claude/skills/next-ticket/SKILL.md](.claude/skills/next-ticket/SKILL.md)); the steps are in [.claude/skills/implement-ticket/SKILL.md](.claude/skills/implement-ticket/SKILL.md). There is no scheduler.
+- **Start and playbook.** The owner starts one leaf ticket with `/next-ticket` ([.claude/skills/next-ticket/SKILL.md](.claude/skills/next-ticket/SKILL.md)); the steps are in [.claude/skills/implement-ticket/SKILL.md](.claude/skills/implement-ticket/SKILL.md). There is no scheduler. After the draft pull request is pushed the driver ends its turn with "Draft pull request #N is waiting for CI" and reads `gh pr checks` once when woken; it does not poll.
 - **Review gate hook.** [.claude/hooks/role_gate.py](.claude/hooks/role_gate.py), wired in [.claude/settings.json](.claude/settings.json), blocks `gh pr create` and `gh pr ready` until Code Reviewer and Reality Checker ran after the last code edit, so the draft pull request opens only after local checks and both gates, and `gh pr ready` follows green CI. `ROLE_GATE=off` in the environment Claude Code is started from switches it off for that session; only the owner does that.
-- **Permissions.** The `permissions` block of [.claude/settings.json](.claude/settings.json): documented commands are allowed, merges, releases, force pushes, pushes to `main` and reads of `.env` are denied, edits to CI, agent configuration and Loop files ask first.
+- **Permissions.** The `permissions` block of [.claude/settings.json](.claude/settings.json): documented commands are allowed, merges, releases, force pushes, pushes to `main` and reads of `.env` are denied, edits to CI, agent configuration and Loop files ask first, in the repository root and in ticket worktrees alike (`Edit` and `Write` on `**/.claude/{agents,skills,hooks,agency-agents}/**` and `**/.claude/settings.json`). Edits through a shell command are not covered, so a ticket never changes agent configuration.
 - **CI.** [.github/workflows/ci.yml](.github/workflows/ci.yml) runs the test command and the hook self-test on Linux and Windows. All jobs run on the draft pull request and must be green before it is marked ready.
 - **Pull request.** [.github/pull_request_template.md](.github/pull_request_template.md). Labels on tickets: `status:ready`, `status:blocked`, `status:in-progress`, `needs-decision`.
 - **Changelog.** Every ticket pull request adds one line under Unreleased in [CHANGELOG.md](CHANGELOG.md).
