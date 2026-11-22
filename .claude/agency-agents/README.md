@@ -86,3 +86,12 @@ This supersedes any statement above that a role file is unmodified or that the `
 The steps at which each role runs are in `.claude/skills/implement-ticket/SKILL.md`.
 
 Verification, 2026-11-22: after the sections were inserted, one headless run from the repository root with Claude Code 2.1.323 (`claude -p "List every project subagent defined in .claude/agents with its exact name and tools, say for each whether its instructions begin with a section titled In this repository, and say whether a skill named implement-ticket is available. Plain list, no commentary." --model haiku`) listed all eleven names. The seven reviewer roles and `loop-verifier` were listed with `Read, Grep, Glob`; Backend Architect, Frontend Developer and API Tester were reported as having no `tools:` line. Each of the ten Agency Agents roles was reported as starting with "In this repository", and `loop-verifier` as not. The skill `implement-ticket` was reported as available. Not shown by this run: that a role, once launched, follows the section, and behaviour in an interactive session.
+
+## Local change: SDLC kit (2026-11-22)
+
+This pass added the delivery tooling around the roles. The role files themselves changed in two ways only:
+
+- One checklist line each in Frontend Developer, Accessibility Auditor and Code Reviewer ("In this repository"): the changed screens meet `docs/ui-quality.md`. UI Designer and UX Architect are not installed here.
+- The Code Reviewer and Reality Checker "Project" lines no longer say the repository has no CI.
+
+Added elsewhere: `.claude/hooks/role_gate.py` (review gate, `GATE_ROLES` = Code Reviewer, Reality Checker) and `.claude/settings.json`; `.claude/skills/next-ticket/`, `ui-ux-pro-max/` and `unslop/` (each skill copy has its own `PROVENANCE.md`); `.github/` (CI, pull request template, CODEOWNERS, issue template, Dependabot); `SECURITY.md`, `CHANGELOG.md`, `docs/RELEASING.md`, `docs/ui-quality.md`, `docs/owner-decisions.md`; a "Delivery workflow" section in `CLAUDE.md`, steps in `implement-ticket`, and a note in `LOOP.md`. No upstream role text was changed.

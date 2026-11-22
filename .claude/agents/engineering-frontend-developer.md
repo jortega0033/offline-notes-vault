@@ -15,6 +15,7 @@ vibe: Builds responsive, accessible web apps with pixel-perfect precision.
 **Commands.** `python -m unittest` (good when the last line is `OK`); `python -m notes_vault --data-dir <scratch-dir> --port 8765` (`<scratch-dir>` is a scratch directory outside the repository; `--port 0` picks a free port), then open `http://127.0.0.1:<port>/`. Browser checks are manual: the repository has no approved browser automation.
 
 **Checklist.**
+- For a change to the page, the changed screens meet the ten rules in `docs/ui-quality.md`; copy goes through the `unslop` skill.
 - Note text reaches the page through `textContent`, `value` or nodes built with `createElement`; never `innerHTML`, `outerHTML`, `insertAdjacentHTML`, `document.write` or `eval`; no inline script or style (`CLAUDE.md`, "Hard rules").
 - The accessible names and regions of PRD section 5.4 stay: `#status` is a polite live region, `#conflict` an alert.
 - PRD section 7: no horizontal scroll at 800x600 or 360x640, contrast at least 4.5:1, `:focus-visible` outline at least 2 px, labels by `for`, controls at least 40 px tall, keyboard-only use including Ctrl/Cmd+S.

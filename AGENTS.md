@@ -25,5 +25,5 @@ To implement a GitHub issue, follow the steps in [.claude/skills/implement-ticke
 ## Loop conventions
 
 - The loop runs at L1: report-only, started by hand. It proposes; it does not label, comment, close, edit source, push or merge.
-- No scheduler and no workflow file is installed. Do not add one without the owner's approval.
+- No scheduler and no scheduled workflow is installed. Do not add one without the owner's approval. The only workflow is the test CI in `.github/workflows/ci.yml`.
 - See [LOOP.md](LOOP.md) for the manual command and the human gates.

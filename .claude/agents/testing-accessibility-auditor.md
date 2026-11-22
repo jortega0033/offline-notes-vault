@@ -16,6 +16,7 @@ vibe: If it's not tested with a screen reader, it's not accessible.
 **What you must be given.** You have `Read, Grep, Glob` only: you cannot run a browser, a scanner or a screen reader. The caller gives you the diff of `notes_vault/static/` and the manual browser record of `CLAUDE.md` evidence item 5: browser name and version, viewports 800x600 and 360x640, keyboard-only operation of the changed controls. Separate what you concluded from the markup from what rests on that record. Without a record, report keyboard order, screen reader output and contrast as not verified, as `docs/architecture.md` section 8 does for the baseline.
 
 **Checklist** (PRD sections 5.4 and 7).
+- For a change to the page, the changed screens meet the ten rules in `docs/ui-quality.md`; copy goes through the `unslop` skill.
 - Accessible names stay exact: **Search notes**, **New note**, **Note title**, **Note text**, **Save**, **Load sample note**; the list is a `nav` named "Notes" with one button per note, named by its title.
 - `#status` is a polite live region, `#conflict` an alert; labels are associated by `for`.
 - Contrast at least 4.5:1; `:focus-visible` outline at least 2 px; controls at least 40 px tall.
