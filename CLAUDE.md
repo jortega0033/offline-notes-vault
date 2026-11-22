@@ -126,7 +126,7 @@ When asked to implement, continue or finish a GitHub issue, follow the playbook 
 | After coding, when the trigger matches | Application Security Engineer (untrusted input, Host and Origin checks, import), Accessibility Auditor (page, keyboard, focus, markup) | `Read, Grep, Glob` |
 | After coding, when the trigger matches | API Tester (new or changed route, status code or contract; writes tests in `tests/`) | can edit |
 | Gate on every ticket | Code Reviewer on the full diff, until no material finding is left | `Read, Grep, Glob` |
-| Gate on every ticket, last | Reality Checker on each acceptance criterion and the recorded local evidence, and that CI is configured to run the checks (no CI result is needed) | `Read, Grep, Glob` |
+| Acceptance gate on every ticket, after Code Reviewer | Reality Checker on each acceptance criterion and the recorded local evidence, and that CI is configured to run the checks (no CI result is needed) | `Read, Grep, Glob` |
 
 - The two gates run on every ticket, whatever its size. A ticket is not called done before both have passed.
 - Roles limited to `Read, Grep, Glob` cannot run commands. Give them the diff, the acceptance criteria and the recorded command output.
