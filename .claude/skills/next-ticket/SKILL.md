@@ -18,9 +18,9 @@ The owner started this run. That is the go signal for exactly one ticket, and it
 3. **Claim it.** `gh issue edit <n> --add-label status:in-progress`.
 4. **Branch in a fresh worktree** named as `CLAUDE.md`, "Git workflow", says (`<issue-number>-<short-slug>`), cut from an up to date `origin/main`: `git fetch origin`, then `git worktree add ../offline-notes-vault-worktrees/<n>-<slug> -b <n>-<slug> origin/main`. Work only in that worktree. Never work on `main`.
 5. **Implement** by following `.claude/skills/implement-ticket/SKILL.md` from step 1, including the roles, the two gates, the UI skills and the CHANGELOG line.
-6. **Open the pull request.** After both gates passed on the current diff and the local checks ran, push the ticket branch (`git push -u origin <branch>`) and open a draft pull request from `.github/pull_request_template.md` (`gh pr create --draft`). The review gate hook blocks `gh pr create` and `gh pr ready` until the gate roles have run after the last code edit; do not switch it off.
-7. **Wait for CI.** `gh pr checks <pr>` until every check is green. A red check is fixed in the same branch, and the gates run again on the new diff. Do not mark the pull request ready while a check is red or pending.
-8. **Mark ready and report.** `gh pr ready <pr>`, then comment on the issue with the pull request link and a short summary of evidence and open points. Leave the label `status:in-progress` for the owner to clear at merge.
+6. **Open the pull request.** Only after the local checks passed and both gates passed on the current diff, push the ticket branch (`git push -u origin <branch>`) and open a draft pull request from `.github/pull_request_template.md` (`gh pr create --draft`). The review gate hook blocks `gh pr create` and `gh pr ready` until the gate roles have run after the last code edit; do not switch it off.
+7. **Wait for CI.** CI runs on the draft. `gh pr checks <pr>` until every check is green. A red check is fixed in the same branch, the local checks and both gates run again on the new diff, and the fix is pushed. Reality Checker is not asked to confirm CI; you check it. Do not mark the pull request ready while a check is red or pending.
+8. **Mark ready and report.** Only when CI is green: `gh pr ready <pr>` (the hook checks the gates again), then comment on the issue with the pull request link, the CI run link and a short summary of evidence and open points. Leave the label `status:in-progress` for the owner to clear at merge.
 9. **Stop.** One ticket per run.
 
 ## Never
