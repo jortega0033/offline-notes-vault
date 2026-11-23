@@ -17,11 +17,11 @@ Decisions the owner made for this repository. Each entry carries its own date. E
 | 11 | Rust is verified in CI only. Not applicable: this repository has no Rust. | 2026-11-22 | none |
 | 12 | The ten UI rules in `docs/ui-quality.md` are binding, and the `ui-ux-pro-max` and `unslop` skills are installed in the repository and used for UI work and for copy. | 2026-11-22 | `docs/ui-quality.md`, `.claude/skills/ui-ux-pro-max/`, `.claude/skills/unslop/`, `.claude/skills/implement-ticket/SKILL.md` |
 | 13 | Visual system: Pipenzo Flow look tokens (docs/design-tokens.md). SDLC kit version: jortega0033/sdlc-kit v1.0.0. | 2026-11-23 | `notes_vault/static/tokens.css`, `notes_vault/static/app.css`, `docs/design-tokens.md` |
-| 14 | Token rules: current selection (D1), focus ring (D2), themes (D3) and linking (D4); sources are listed in entry 14 below. | 2026-11-23 | `docs/design-tokens.md` |
+| 14 | Token rules: current selection (D1), focus ring (D2), themes (D3) and linking (D4); sources are listed in entry 14 below. | 2026-11-23 | `docs/design-tokens.md`, `docs/ui-quality.md` |
 
 ## Entry 14: token rules, 2026-11-23
 
-Recorded in `docs/design-tokens.md`. The source of each decision is given as stated.
+Recorded in `docs/design-tokens.md` and `docs/ui-quality.md`. The source of each decision is given as stated.
 
 | Item | Decision | Source |
 |---|---|---|
