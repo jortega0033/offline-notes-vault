@@ -13,6 +13,8 @@ Binding for every change to the page (`notes_vault/static/`) and to user-facing 
 9. Dense, aligned layouts on a consistent spacing scale. No card grid where a table or a list is the right form.
 10. User-facing copy is plain and specific: no filler, no exclamation marks, and the same word for the same thing everywhere.
 
+Colours come from the shared tokens in [design-tokens.md](design-tokens.md); new UI adds no colour literals.
+
 ## How the rules are applied
 
 - A UI ticket starts with the `ui-ux-pro-max` skill (`.claude/skills/ui-ux-pro-max/`): a design-system search for the product type with `python .claude/skills/ui-ux-pro-max/scripts/search.py`. The skill advises. These rules and the hard rules in `CLAUDE.md` win where they differ (no framework, no CDN, no external font, no inline style).
