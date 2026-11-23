@@ -20,8 +20,8 @@ The page uses the Pipenzo "Flow look" tokens: a black page, Flow-style alpha lay
 ## Rules
 
 - New UI uses these tokens. No new colour literals in CSS or JavaScript.
-- Yellow is for the primary action, the current-step marker and the current selection (UI rule 8). Red is for danger only. Yellow is not used for anything else.
-- Header comment of `tokens.css`: it is narrower than the rule above (it names fewer uses of yellow). This document takes precedence. The comment is not edited, because the copy must stay identical to the source file.
+- Yellow is for the primary action, the current-step marker and the current selection (UI rule 8). Red is for danger only. Apart from the focus ring (see "Focus ring"), yellow is not used for anything else.
+- The header comment of `tokens.css` gives a different list: it does not name the current selection, and it also names the "your turn" chip and two dots of the source product, which are not used here. This document takes precedence. The comment is not edited, because the copy must stay identical to the source file.
 - JavaScript that needs a colour reads it with `getComputedStyle(document.documentElement).getPropertyValue('--token')`.
 
 ## Light and dark
@@ -37,7 +37,7 @@ Decided by the owner on 2026-11-23: the yellow accent marks the current selectio
 - Never a tint with a border of the same hue, and never a thick border on one side (UI rules 1 and 2).
 - `--state-selected` (an alpha layer) is not the selection marker on its own.
 
-The page still marks selection in a neutral colour in places. It follows this rule in ticket work; this change does not restyle it.
+The page does not follow this rule yet: the selected note in the list (`aria-current="true"`) still has a neutral border with a 6px left edge and a neutral fill. It is to be changed in ticket work; this change does not restyle it.
 
 ## Focus ring
 
@@ -50,3 +50,7 @@ Contrast checks and no-colour-alone checks cover both the light block and the da
 ## Pages and the static allowlist
 
 A ticket that creates a page, or its static allowlist, links `tokens.css` before any other stylesheet and serves it: the allowlist in `notes_vault/server.py` and its test both include it.
+
+## Sources
+
+Entry 14 in `owner-decisions.md` records the sources. The current selection rule is the owner's decision; focus ring, themes and linking were recommended by the orchestrator and adopted under the owner's delegation of 2026-11-23.

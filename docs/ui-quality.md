@@ -9,7 +9,7 @@ Binding for every change to the page (`notes_vault/static/`) and to user-facing 
 5. No emoji used as icons or bullets, and no sparkle marks.
 6. No pill or badge on things that are not states. No all-caps, letter-spaced micro labels as section decoration.
 7. No centred hero with a slogan in an application screen. Screens open on the user's task.
-8. One accent colour, used for the primary action and the current selection. Status colours only for status.
+8. One accent colour, used for the primary action, the current-step marker and the current selection (see [design-tokens.md](design-tokens.md)); the focus ring is exempt. Status colours only for status. Source: entry 14 in [owner-decisions.md](owner-decisions.md) (D1 owner decision, D2 adopted under the owner's delegation).
 9. Dense, aligned layouts on a consistent spacing scale. No card grid where a table or a list is the right form.
 10. User-facing copy is plain and specific: no filler, no exclamation marks, and the same word for the same thing everywhere.
 
