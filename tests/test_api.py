@@ -234,6 +234,7 @@ class HttpBoundaryTests(ApiBase):
     def test_static_allowlist(self):
         static = Path(storage.__file__).parent / "static"
         for path, name, ctype in (("/", "index.html", "text/html"), ("/index.html", "index.html", "text/html"),
+                                  ("/static/tokens.css", "tokens.css", "text/css"),
                                   ("/static/app.css", "app.css", "text/css"),
                                   ("/static/app.js", "app.js", "text/javascript")):
             if not (static / name).is_file():
