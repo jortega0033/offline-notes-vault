@@ -101,7 +101,7 @@ h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; color: 
   overflow-wrap: anywhere;
 }
 .note-list button[aria-current="true"] {
-  border-color: var(--primary);
+  border-color: var(--fg);
   border-left-width: 6px;
   background: var(--bg-raised);
 }
